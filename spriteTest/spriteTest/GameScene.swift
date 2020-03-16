@@ -196,11 +196,9 @@ class GameScene: SKScene {
                     do {
                         self.touchMusic()
                         self.score+=1
-                        explosion(b: targetNode as! SKSpriteNode)
-                       
+                        explosion(b: targetNode as! SKSpriteNode,location: touchLocation)
                         self.updateScore()
-                        
-                    }//if
+                        }
                 
                 case "reload":
                     do {
@@ -269,10 +267,10 @@ class GameScene: SKScene {
         }//for
     }
     // remove ballon from scene by using of SKEmitterNode
-    func explosion(b: SKSpriteNode){
+    func explosion(b: SKSpriteNode,location : CGPoint){
         let emitter = SKEmitterNode(fileNamed: "explode")
         emitter?.particleTexture = SKTexture(imageNamed: b.name ?? "red")
-        emitter?.particlePosition = b.position
+        emitter?.position = location
         addChild(emitter ?? SKEmitterNode())
         b.removeFromParent()
     
